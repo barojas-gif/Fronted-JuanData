@@ -1,0 +1,69 @@
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #f9f9ff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.logo {
+  max-width: 120px;
+  margin-bottom: 25px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-group-password {
+  position: relative;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 36px 10px 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.icon-eye-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-eye-btn i {
+  font-size: 20px;
+  color: #444;
+}
+
+.btn-acceder {
+  padding: 10px;
+  background-color: #3a3eff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-acceder:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+}

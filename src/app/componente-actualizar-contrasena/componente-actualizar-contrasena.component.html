@@ -1,0 +1,45 @@
+<div class="login-container">
+  <img src="/assets/logo.png" alt="Logo JDC" class="logo" />
+
+  <form (ngSubmit)="actualizarContrasena()" class="login-form">
+    <div class="input-group-password">
+      <input
+        [type]="mostrarNueva ? 'text' : 'password'"
+        placeholder="Ingrese su nueva contraseña"
+        [(ngModel)]="nuevaContrasena"
+        name="nuevaContrasena"
+        class="input-field"
+        required
+      />
+      <button type="button" class="icon-eye-btn" (click)="mostrarNueva = !mostrarNueva" tabindex="-1">
+        <i class="fa" [ngClass]="mostrarNueva ? 'fa-eye-slash' : 'fa-eye'"></i>
+      </button>
+    </div>
+
+    <div class="input-group-password">
+      <input
+        [type]="mostrarConfirmar ? 'text' : 'password'"
+        placeholder="Confirme su contraseña"
+        [(ngModel)]="confirmarContrasena"
+        name="confirmarContrasena"
+        class="input-field"
+        required
+      />
+      <button type="button" class="icon-eye-btn" (click)="mostrarConfirmar = !mostrarConfirmar" tabindex="-1">
+        <i class="fa" [ngClass]="mostrarConfirmar ? 'fa-eye-slash' : 'fa-eye'"></i>
+      </button>
+    </div>
+
+    <div *ngIf="contrasenasNoCoinciden" class="error-msg">
+      Las contraseñas no coinciden.
+    </div>
+
+    <button
+      type="submit"
+      class="btn-acceder"
+      [disabled]="!nuevaContrasena.trim() || !confirmarContrasena.trim() || nuevaContrasena !== confirmarContrasena"
+    >
+      Actualizar Contraseña
+    </button>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+.border-dashed {
+  border-style: dashed !important;
+}
+
+.drop-area:hover {
+  background-color: #f8f9fa !important;
+  border-color: #0d6efd !important;
+}
+
+.d-block {
+  display: block !important;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Visor PDF</title>
+
+  <!-- Estilo mínimo para ocupar toda la ventana -->
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #f4f4f4;
+      font-family: sans-serif;
+    }
+    #viewer {
+      height: 100%;
+      overflow-y: auto;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    }
+  </style>
+</head>
+<body>
+  <div id="viewer">Cargando PDF…</div>
+
+  <!-- PDF.js core y worker: CDN estable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Tu script de renderizado -->
+  <script src="viewer.js"></script>
+
+
+  <script>
+    // Bloquear clic derecho
+    document.addEventListener('contextmenu', event => event.preventDefault());
+  
+    // Bloquear Ctrl + S, Ctrl + P, Ctrl + C, F12
+    document.addEventListener('keydown', function (e) {
+      if (
+        (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'c')) || 
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+        alert('Esta acción está deshabilitada para proteger el contenido.');
+      }
+    });
+  </script>
+  
+</body>
+</html>

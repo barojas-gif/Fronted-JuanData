@@ -1,0 +1,47 @@
+<div class="login-container">
+  <div class="login-box">
+    <img src="/assets/logo.png" alt="Logo JDC" class="logo" />
+
+    <h2 class="form-title">Registro de Usuario</h2>
+    <p class="form-subtitle">Completa los campos para crear tu cuenta</p>
+
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <div class="input-container">
+        <input formControlName="numeroDocumento" type="text" inputmode="numeric" pattern="[0-9]*"
+          placeholder="Número de documento" class="input-field" maxlength="15"
+          [disabled]="registrando"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+
+        <input formControlName="nombreUsuario" type="text" placeholder="Nombre" class="input-field" [disabled]="registrando" />
+        <input formControlName="apellidoUsuario" type="text" placeholder="Apellido" class="input-field" [disabled]="registrando" />
+
+        <input formControlName="numeroTelefono" type="text" inputmode="numeric" pattern="[0-9]*"
+          placeholder="Número de teléfono" class="input-field" maxlength="15"
+          [disabled]="registrando"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+
+        <div class="usuario-container">
+          <input formControlName="correoUsuario" type="text" placeholder="Usuario"
+            class="input-field sin-borde-derecho" [disabled]="registrando" />
+          <span class="sufijo">&#64;jdc.edu.co</span>
+        </div>
+
+        <select formControlName="idCarrera" class="input-field" [disabled]="registrando">
+          <option value="" disabled selected>Seleccione una carrera</option>
+          <option *ngFor="let carrera of listaCarreras" [value]="carrera.idCarrera">
+            {{ carrera.nombreCarrera }}
+          </option>
+        </select>
+      </div>
+
+      <button class="btn-acceder" type="submit" [disabled]="!registroForm.valid || registrando">
+        <ng-container *ngIf="!registrando">Registrarse</ng-container>
+        <ng-container *ngIf="registrando">
+          <span class="spinner"></span> Registrando...
+        </ng-container>
+      </button>
+
+      <a [routerLink]="['/login']" class="link-volver">← Volver al inicio</a>
+    </form>
+  </div>
+</div>

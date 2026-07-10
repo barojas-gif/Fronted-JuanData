@@ -1,0 +1,26 @@
+/* Estilo para los botones dentro de la tabla */
+.btn-white {
+  background-color: #fff;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.btn-white:hover {
+  background-color: #f8f9fa;
+}
+
+/* Ajuste del acordeón para que no tenga bordes dobles */
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #f8f9fa;
+  color: #0d6efd;
+  box-shadow: none;
+}
+
+/* Sombra suave para las acciones */
+.btn-group.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}

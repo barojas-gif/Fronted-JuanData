@@ -1,0 +1,39 @@
+<app-componente-menu></app-componente-menu>
+
+<header class="header">
+  <h1>Documentos más vistos</h1>
+</header>
+
+<table class="table" *ngIf="documentosMasVistos.length > 0; else sinDocumentos">
+  <thead class="table-encabezado">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre del Estudiante</th>
+      <th scope="col">Título</th>
+      <th scope="col">Tema</th>
+      <th scope="col">Última Vista</th>
+      <th scope="col">Semestre</th>
+      <th scope="col">Archivo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let doc of documentosMasVistos; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ doc.nombreEstudiante }}</td>
+      <td>{{ doc.tituloDocumento }}</td>
+      <td>{{ doc.temaDocumento }}</td>
+      <td>{{ doc.fechaUltimaVista | date:'short' }}</td>
+      <td>{{ doc.semestre }}</td>
+      <td>
+        <a [href]="'http://localhost:8080/api/documentos/uploads/' + encodeUrl(doc.archivoDocumento)
+" target="_blank">
+          {{ doc.archivoDocumento }}
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #sinDocumentos>
+  <p class="text-muted">No hay documentos registrados como más vistos.</p>
+</ng-template>

@@ -1,0 +1,25 @@
+.header{
+    width: 100%;
+    height: 80px;
+    background: #145ca4;
+}
+
+h1 {
+    font-size: 2.0rem;
+    letter-spacing: 2px;
+    color: antiquewhite;
+    font-weight: bold;
+    padding: 20px 0;
+    padding-left: 10px;
+  }
+
+.table {
+    max-width: 85%;   /* ajusta el ancho máximo */
+    margin: 30px auto 0 auto;   /* centra el accordion */
+}
+
+.table-encabezado{
+    background: #107409;
+    color: antiquewhite;
+    text-align: center; 
+}

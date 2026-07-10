@@ -1,0 +1,28 @@
+/* Solo lo que Bootstrap no trae de caja */
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer:hover {
+  background-color: #f8f9fa;
+}
+
+/* Ajuste fino para los iconos en las cabeceras */
+.table th i {
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+/* Para que los botones de acción (Pencil/Trash) no se vean desalineados */
+.btn-group .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Opcional: para que las imágenes de los botones de paginación antiguos 
+   no interfieran si aún no has limpiado el código viejo */
+.pagination .page-link {
+  box-shadow: none !important;
+}

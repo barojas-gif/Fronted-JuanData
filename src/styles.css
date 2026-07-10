@@ -1,0 +1,5 @@
+/* SweetAlert por encima de cualquier modal */
+.swal-popup-zindex {
+  z-index: 9999 !important;
+}
+/* You can add global styles to this file, and also import other style files */

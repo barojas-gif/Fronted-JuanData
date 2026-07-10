@@ -1,0 +1,125 @@
+/* Contenedor del modal */
+.modal-backdrop-custom {
+    background-color: rgba(15, 23, 42, 0.7); /* Fondo más profundo */
+    backdrop-filter: blur(8px);
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Tarjeta del modal */
+.modal-content-custom {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px; /* Tamaño ideal para 2 columnas */
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Scrollbar estética */
+.modal-content-custom::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-content-custom::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+/* Ajuste de Inputs y Selects */
+.minimal-input {
+    width: 100%;
+    border: 1.5px solid #e2e8f0;
+    padding: 10px 16px;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    height: 48px; /* Altura fija para que todo alinee */
+}
+
+.minimal-input:focus {
+    background-color: #fff;
+    border-color: #145ca4;
+    box-shadow: 0 0 0 4px rgba(20, 92, 164, 0.08);
+    outline: none;
+}
+
+/* Especial para el Grupo de Correo */
+.input-group {
+    display: flex;
+    align-items: stretch;
+}
+
+.input-group .minimal-input {
+    margin-bottom: 0; /* Quita el margen inferior para que pegue con la arroba */
+}
+
+.input-group-text {
+    background-color: #f1f5f9;
+    border: 1.5px solid #e2e8f0;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    padding: 0 15px;
+    color: #64748b;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 48px; /* Misma altura que el input */
+}
+
+/* Etiquetas */
+.label-custom {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #64748b;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding-left: 4px;
+}
+
+/* Botones con estilo moderno */
+.btn-save, .btn-cancel {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #145ca4 0%, #0e467d 100%);
+    color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+    box-shadow: 0 10px 15px -3px rgba(20, 92, 164, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+.btn-cancel:hover {
+    background-color: #fee2e2;
+    color: #ef4444;
+}

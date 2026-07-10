@@ -1,0 +1,49 @@
+/* Contenedor de la tarjeta */
+.semester-card {
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Efecto al pasar el mouse */
+.semester-card:hover {
+  transform: translateY(-10px);
+  shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabecera visual de la tarjeta */
+.card-visual {
+  background: linear-gradient(135deg, #0d6efd 0%, #003d99 100%);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card-visual i {
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+}
+
+/* Círculos decorativos de fondo (Estilo simple) */
+.overlay-circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+  z-index: 1;
+}
+
+/* Estilo del enlace/botón */
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}

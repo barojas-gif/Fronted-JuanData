@@ -1,0 +1,98 @@
+<app-componente-menu></app-componente-menu>
+
+<div class="container my-5 px-4">
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-secondary fw-bold mb-0">Semillero: <span class="text-primary">{{ semilleroNombre
+                        }}</span></h2>
+                <button *ngIf="esDocente()" type="button"
+                    class="btn btn-primary d-flex align-items-center gap-2 rounded-pill px-4" data-bs-toggle="modal"
+                    data-bs-target="#modalDocSemillero">
+                    <i class="bi bi-cloud-arrow-up-fill fs-5"></i>
+                    <span>Subir Documento</span>
+                </button>
+            </div>
+
+            <div class="accordion accordion-flush border rounded-3 overflow-hidden" id="accordionCategorias">
+                <div *ngFor="let categoria of categorias; let i = index" class="accordion-item">
+
+                    <h2 class="accordion-header" id="headingCategoria{{i}}">
+                        <button class="accordion-button collapsed fw-semibold text-secondary" type="button"
+                            data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseCategoria' + i"
+                            aria-expanded="false" [attr.aria-controls]="'collapseCategoria' + i">
+                            <i class="bi bi-folder2-open me-2 text-primary"></i> {{ categoria }}
+                        </button>
+                    </h2>
+
+                    <div id="collapseCategoria{{i}}" class="accordion-collapse collapse"
+                        [attr.aria-labelledby]="'headingCategoria' + i" data-bs-parent="#accordionCategorias">
+
+                        <div class="accordion-body bg-light-subtle">
+                            <div class="table-responsive rounded-3 border bg-white">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="py-3 ps-3">Título / Tema</th>
+                                            <th class="py-3">Fecha</th>
+                                            <th class="py-3 text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngIf="!documentosPorCategoria[categoria] || documentosPorCategoria[categoria].length === 0">
+                                            <td colspan="3" class="text-center py-4 text-muted">
+                                                <i class="bi bi-info-circle me-2"></i> No hay documentos en esta
+                                                categoría.
+                                            </td>
+                                        </tr>
+                                        <tr *ngFor="let doc of documentosPorCategoria[categoria]">
+                                            <td class="ps-3">
+                                                <div class="fw-bold text-dark">{{ doc.tituloDocumento }}</div>
+                                                <div class="small text-muted">{{ doc.temaDocumento }}</div>
+                                            </td>
+                                            <td class="text-muted small">
+                                                {{ doc.fechaDocumento | date: 'dd/MM/yyyy HH:mm' }}
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn-group shadow-sm border rounded-pill overflow-hidden">
+                                                    <a class="btn btn-white btn-sm px-3 border-end"
+                                                        title="Ver Documento"
+                                                        [href]="'http://localhost:8080/api/documentos/uploads/' + doc.archivoDocumento"
+                                                        target="_blank">
+                                                        <ng-container
+                                                            [ngSwitch]="doc.archivoDocumento.split('.').pop().toLowerCase()">
+                                                            <i *ngSwitchCase="'pdf'"
+                                                                class="bi bi-file-pdf text-danger fs-5"></i>
+                                                            <i *ngSwitchCase="'doc'"
+                                                                class="bi bi-file-word text-primary fs-5"></i>
+                                                            <i *ngSwitchCase="'docx'"
+                                                                class="bi bi-file-word text-primary fs-5"></i>
+                                                            <i *ngSwitchCase="'xls'"
+                                                                class="bi bi-file-excel text-success fs-5"></i>
+                                                            <i *ngSwitchCase="'xlsx'"
+                                                                class="bi bi-file-excel text-success fs-5"></i>
+                                                            <i *ngSwitchDefault class="bi bi-file-earmark fs-5"></i>
+                                                        </ng-container>
+                                                    </a>
+                                                    <button *ngIf="esDocente()" class="btn btn-white btn-sm px-3"
+                                                        title="Eliminar Documento" (click)="desactivarDocumento(doc)">
+                                                        <i class="bi bi-trash3 text-danger fs-5"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-componente-modal-doc-semillero [semilleroId]="idDelSemillero" (documentoSubido)="agregarDocumento($event)">
+</app-componente-modal-doc-semillero>

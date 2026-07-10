@@ -1,0 +1,374 @@
+/* Contenedor general mejorado */
+.document-container {
+  padding: 2rem;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: calc(100vh - 140px);
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* Header mejorado con gradiente */
+.header {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(135deg, #145ca4 0%, #1e3c72 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(20, 92, 164, 0.3);
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.espacio {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, #fefeff, #f8f9fa);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+h1 {
+  font-size: 2.0rem;
+  letter-spacing: 2px;
+  color: antiquewhite;
+  font-weight: bold;
+  padding: 20px 0;
+  padding-left: 10px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+/* Iframe/PDF mejorado */
+.doc-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+  background: white;
+  border: 1px solid rgba(255,255,255,0.8);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.doc-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+}
+
+.doc-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #145ca4, #667eea, #764ba2);
+  z-index: 1;
+}
+
+.doc-frame {
+  width: 100%;
+  height: 800px;
+  border: none;
+  background: white;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Imagen mejorada */
+.img-wrapper {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.img-wrapper img {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.img-wrapper img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenido HTML mejorado para documentos */
+.doc-html {
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  overflow-x: auto;
+  min-height: 400px;
+  line-height: 1.7;
+  font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.8);
+  position: relative;
+}
+
+.doc-html::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #145ca4, #667eea, #764ba2);
+  border-radius: 20px 20px 0 0;
+}
+
+/* Estilos específicos para el contenido del documento */
+.doc-html h1, .doc-html h2, .doc-html h3, .doc-html h4, .doc-html h5, .doc-html h6 {
+  color: #145ca4;
+  margin-bottom: 1.2rem;
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+.doc-html h1 {
+  font-size: 2.2rem;
+  border-bottom: 3px solid #145ca4;
+  padding-bottom: 0.5rem;
+}
+
+.doc-html h2 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.doc-html h3 {
+  font-size: 1.4rem;
+  color: #1e3c72;
+}
+
+.doc-html p {
+  margin-bottom: 1.2rem;
+  color: #444;
+  text-align: justify;
+}
+
+.doc-html ul, .doc-html ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.doc-html li {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.doc-html table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.doc-html th, .doc-html td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.doc-html th {
+  background: linear-gradient(135deg, #145ca4, #1e3c72);
+  color: white;
+  font-weight: 600;
+}
+
+.doc-html tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Estilos para código */
+.doc-html pre, .doc-html code {
+  background: linear-gradient(135deg, #2d3748, #4a5568);
+  color: #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-left: 4px solid #145ca4;
+  position: relative;
+}
+
+.doc-html pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #145ca4, #667eea);
+}
+
+.doc-html code {
+  display: inline;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.doc-html blockquote {
+  border-left: 4px solid #145ca4;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #666;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+/* Overlay mejorado */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 10;
+  pointer-events: all;
+  cursor: not-allowed;
+}
+
+/* Bloqueo de selección */
+.no-copy {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Bloquea interacción desde el mouse */
+iframe {
+  pointer-events: none;
+}
+
+/* Botón de descarga mejorado */
+.download-button {
+  display: inline-block;
+  margin-left: 25px;
+  margin-top: 25px;
+  padding: 12px 20px;
+  background-color: #007bff;   /* Azul */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.download-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.5s ease;
+}
+
+.download-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  background-color: #0056b3;
+}
+
+.download-button:hover::before {
+  left: 100%;
+}
+
+.download-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Animaciones de entrada */
+.document-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+  .document-container {
+      max-width: 95%;
+      padding: 1.5rem;
+  }
+  
+  .doc-html {
+      padding: 1.5rem;
+  }
+  
+  .doc-frame {
+      height: 600px;
+  }
+  
+  h1 {
+      font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .document-container {
+      padding: 1rem;
+  }
+  
+  .doc-html {
+      padding: 1rem;
+  }
+  
+  .download-button {
+      margin-left: 10px;
+      margin-top: 15px;
+      padding: 10px 15px;
+      font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,39 @@
+<nav class="fixed-top shadow-sm">
+  <div class="navbar-white px-4 d-flex align-items-center justify-content-between">
+    <a [routerLink]="['/Inicio']">
+      <img src="/assets/logo.png" class="logo-nav" alt="Logo">
+    </a>
+
+    <div class="d-flex align-items-center">
+      <a class="icon-link" [routerLink]="['/Inicio']" title="Inicio"><i class="bi bi-house"></i></a>
+      
+      <a class="icon-link" *ngIf="esAdministrador() || esDocente()" [routerLink]="['/AdministracionUsuarios']" title="Usuarios">
+        <i class="bi bi-person-gear"></i>
+      </a>
+      
+      <a class="icon-link text-success" *ngIf="esAdministrador()" [routerLink]="['/ArchivosAceptados']" title="Aceptados">
+        <i class="bi bi-check-circle"></i>
+      </a>
+
+      <a class="icon-link text-warning position-relative" *ngIf="esAdministrador()" [routerLink]="['/ArchivosPendientes']" title="Pendientes">
+        <i class="bi bi-clock-history"></i>
+        <span *ngIf="cantidadPendientes > 0" class="badge-notificacion">{{ cantidadPendientes }}</span>
+      </a>
+
+      <a class="icon-link text-primary" *ngIf="tieneSemillero" [routerLink]="['/semillero']" title="Mi Semillero">
+        <i class="bi bi-journal-bookmark-fill"></i>
+      </a>
+
+      <button (click)="cerrarSesion()" class="btn-logout ms-3"><i class="bi bi-box-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <div class="header-azul px-4 d-flex align-items-center justify-content-between">
+    <h2 class="titulo-pagina m-0 text-white">{{ obtenerRutaActual() }}</h2>
+    
+    <div class="saludo-header text-white">
+      <span class="opacidad-baja">Bienvenido,</span> 
+      <strong style="text-transform: capitalize; margin-left: 5px;">{{ nombreUsuario }}</strong> 👋
+    </div>
+  </div>
+</nav><br><br><br><br>

@@ -1,0 +1,15 @@
+.cursor-pointer { cursor: pointer; }
+.cursor-pointer:hover { background-color: #f8f9fa; }
+
+/* Para que los iconos de archivo no se vean gigantes */
+.btn-group .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+}
+
+.table th i {
+  font-size: 0.8rem;
+  margin-left: 5px;
+}

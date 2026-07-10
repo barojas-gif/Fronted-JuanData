@@ -1,0 +1,35 @@
+/* Estilos esenciales para la tabla de Aceptados */
+
+.cursor-pointer { 
+  cursor: pointer; 
+  user-select: none; /* Evita que se seleccione el texto al hacer clic rápido */
+}
+
+.cursor-pointer:hover { 
+  background-color: #f8f9fa; 
+}
+
+/* Ajuste de iconos de ordenamiento */
+.table th i {
+  font-size: 0.85rem;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* Alineación de los botones de acción */
+.btn-outline-secondary {
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f8f9fa;
+  color: #333;
+  border-color: #ced4da;
+}
+
+/* Estilo para los badges de los temas */
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}

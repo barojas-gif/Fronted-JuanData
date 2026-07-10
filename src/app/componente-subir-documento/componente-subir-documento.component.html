@@ -1,0 +1,75 @@
+<div class="modal fade" [ngClass]="{'show d-block': visible}" tabindex="-1" *ngIf="visible">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title d-flex align-items-center fw-bold">
+          <i class="bi bi-cloud-upload me-2 text-primary"></i>
+          Subir Documento
+        </h5>
+        <button type="button" class="btn-close" (click)="cerrar()"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Tema del documento</label>
+              <input type="text" class="form-control" [(ngModel)]="temaDocumento" placeholder="Ej: Álgebra">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Nombre del archivo</label>
+              <input type="text" class="form-control" [(ngModel)]="nombreDocumento"
+                placeholder="Ej: Guía de ejercicios">
+            </div>
+
+            <div class="mb-0">
+              <label class="form-label fw-semibold small">Materia</label>
+              <select class="form-select" [(ngModel)]="materiaSeleccionadaId">
+                <option [ngValue]="null" disabled selected>Seleccione...</option>
+                <option *ngFor="let m of materias" [ngValue]="m.id_materia">
+                  {{ m.nombre_materia }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold small">Archivo adjunto</label>
+            <div
+              class="drop-area border border-2 border-dashed rounded d-flex flex-column align-items-center justify-content-center p-4 bg-light h-100"
+              (drop)="onFileDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+              (click)="fileInput.click()" style="cursor: pointer; min-height: 180px;">
+
+              <div *ngIf="archivoSeleccionado; else sinArchivo" class="text-center">
+                <i class="bi bi-file-earmark-check fs-1 text-success"></i>
+                <p class="small mt-2 mb-0 text-truncate" style="max-width: 150px;">{{ archivoSeleccionado.name }}</p>
+              </div>
+
+              <ng-template #sinArchivo>
+                <i class="bi bi-plus-circle fs-1 text-muted"></i>
+                <p class="small text-muted text-center mt-2 mb-0">Arrastra o haz clic para subir</p>
+              </ng-template>
+
+              <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" />
+            </div>
+          </div>
+
+        </div>
+      </div><br>
+
+      <div class="modal-footer border-top-0">
+        <button type="button" class="btn btn-danger" (click)="cerrar()">Cerrar</button>
+        <button type="button" class="btn btn-success" [disabled]="!isFormValid() || subiendo"
+          (click)="subirDocumento()">
+          <span *ngIf="subiendo" class="spinner-border spinner-border-sm me-1"></span>
+          {{ subiendo ? 'Subiendo...' : 'Guardar cambios' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show" *ngIf="visible"></div>

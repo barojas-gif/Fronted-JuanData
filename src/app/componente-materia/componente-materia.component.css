@@ -1,0 +1,48 @@
+/* Botón de subir documento personalizado */
+.btn-subir {
+    text-decoration: none;
+    color: #dc3545;
+    /* Rojo según tu estilo original */
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.btn-subir:hover {
+    transform: scale(1.05);
+    color: #a71d2a;
+}
+
+.btn-subir i {
+    font-size: 2.8rem;
+}
+
+/* Acordeón */
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(0, 0, 0, .125);
+}
+
+/* Iconos de archivo */
+.icono-archivo {
+    cursor: pointer;
+    display: inline-block;
+    transition: opacity 0.2s;
+}
+
+.icono-archivo:hover {
+    opacity: 0.7;
+}
+
+/* Ajustes de tabla */
+.table thead th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

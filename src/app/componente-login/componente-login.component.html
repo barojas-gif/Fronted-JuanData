@@ -1,0 +1,78 @@
+<div class="login-container">
+  <!-- Sección de imágenes del lado izquierdo -->
+  <div class="images-section">
+    <!-- Imagen o fondo aplicado por CSS -->
+  </div>
+
+  <!-- Sección del formulario de login -->
+  <div class="login-section">
+    <div class="login-form-container">
+      
+      <!-- Logo -->
+      <div class="header">
+        <div class="logo-container">
+          <img src="assets/logo.png" class="logo" alt="Logo Institucional" />
+        </div>
+      </div>
+
+      <!-- Formulario de acceso -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form" novalidate>
+        
+        <!-- Campo: Usuario -->
+        <div class="form-group">
+          <label for="correoUsuario" class="form-label">Correo institucional</label>
+          <div class="input-container">
+            <input
+              type="email"
+              id="correoUsuario"
+              formControlName="correoUsuario"
+              placeholder="example@jdc.edu.co"
+              class="form-input"
+              [class.invalid]="loginForm.get('correoUsuario')?.invalid && loginForm.get('correoUsuario')?.touched"
+              required
+            />
+            <div *ngIf="loginForm.get('correoUsuario')?.invalid && loginForm.get('correoUsuario')?.touched" class="error-message">
+              Ingresa un correo válido.
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo: Contraseña -->
+        <div class="form-group">
+          <label for="contrasenaUsuario" class="form-label">Contraseña</label>
+          <div class="input-container">
+            <div style="position:relative;display:flex;align-items:center;">
+              <input
+                [type]="mostrarContrasena ? 'text' : 'password'"
+                id="contrasenaUsuario"
+                formControlName="contrasenaUsuario"
+                placeholder="********"
+                class="form-input"
+                [class.invalid]="loginForm.get('contrasenaUsuario')?.invalid && loginForm.get('contrasenaUsuario')?.touched"
+                required
+                style="padding-right:36px;"
+              />
+              <button type="button" (click)="mostrarContrasena = !mostrarContrasena" tabindex="-1" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;padding:0;margin:0;">
+                <i class="bi" [ngClass]="mostrarContrasena ? 'bi-eye-slash' : 'bi-eye'" style="font-size:22px;color:#333;"></i>
+              </button>
+            </div>
+            <div *ngIf="loginForm.get('contrasenaUsuario')?.invalid && loginForm.get('contrasenaUsuario')?.touched" class="error-message">
+              La contraseña es requerida.
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón de acceso -->
+        <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">
+          Iniciar Sesión
+        </button>
+      </form>
+
+      <!-- Enlaces de ayuda -->
+      <div class="additional-links">
+        <a [routerLink]="['/RegistrarUsuario']" class="link">Crear cuenta</a>
+        <a [routerLink]="['/RecuperarContrasena']" class="link">¿Olvidaste tu contraseña?</a>
+      </div>
+    </div>
+  </div>
+</div>

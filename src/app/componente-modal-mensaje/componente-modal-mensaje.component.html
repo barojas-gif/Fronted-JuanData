@@ -1,0 +1,38 @@
+<div class="modal-backdrop" *ngIf="mostrar" (click)="cerrarModal()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+
+    <div class="modal-status-bar" [ngClass]="tipo"></div>
+
+    <div class="modal-header">
+      <div class="icon-container" [ngClass]="tipo">
+        <i class="bi bi-check-lg" *ngIf="tipo === 'aceptar'"></i>
+        <i class="bi bi-x-lg" *ngIf="tipo === 'rechazar'"></i>
+      </div>
+      <div class="header-text">
+        <h3>{{ tipo === 'aceptar' ? 'Aprobar Documento' : 'Rechazar Documento' }}</h3>
+        <p>Se enviará una notificación a: <strong>{{ correoEstudiante }}</strong></p>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <label for="mensaje">Observaciones / Comentarios</label>
+      <div class="textarea-wrapper">
+        <textarea id="mensaje" [(ngModel)]="mensaje"
+          placeholder="Escribe aquí los motivos o instrucciones adicionales para el estudiante..." class="modal-input"
+          [disabled]="enviando">
+        </textarea>
+      </div>
+    </div>
+ 
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="cerrarModal()" [disabled]="enviando">
+        Cancelar
+      </button>
+      <button class="btn-accion" [ngClass]="tipo" (click)="enviarMensaje()" [disabled]="enviando || !mensaje.trim()">
+        <span *ngIf="!enviando">Confirmar {{ tipo === 'aceptar' ? 'Aprobación' : 'Rechazo' }}</span>
+        <div *ngIf="enviando" class="loader"></div>
+      </button>
+    </div>
+
+  </div>
+</div>

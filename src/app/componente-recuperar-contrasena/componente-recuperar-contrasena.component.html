@@ -1,0 +1,49 @@
+<!-- <div class="login-container">
+    <img src="/assets/logo.png" alt="Logo JDC" class="logo">
+  
+    <form (ngSubmit)="recuperar()" class="login-form">
+      <input
+        type="text"
+        placeholder="Usuario"
+        [(ngModel)]="usuario"
+        name="usuario"
+        class="input-field"
+        required
+      />
+  
+      <button type="submit" class="btn-acceder" *ngIf="!recuperando" [disabled]="!usuario.trim()">Recuperar Contraseña</button>
+        
+      <a [routerLink]="['/login']" class="link-volver">Volver al inicio</a>
+    </form>
+  </div> -->
+
+  <div class="login-container">
+  <div class="login-box">
+    <img src="/assets/logo.png" alt="Logo JDC" class="logo" />
+
+    <h2 class="form-title">Recuperar Contraseña</h2>
+    <p class="form-subtitle">Ingresa tu usuario para enviar las instrucciones al correo</p>
+
+    <form (ngSubmit)="recuperar()" class="login-form">
+      <input
+        type="text"
+        placeholder="Usuario"
+        [(ngModel)]="usuario"
+        name="usuario"
+        class="input-field"
+        required
+      />
+
+      <button
+        type="submit"
+        class="btn-acceder"
+        [disabled]="!usuario.trim() || recuperando">
+        {{ recuperando ? 'Procesando...' : 'Recuperar Contraseña' }}
+      </button>
+
+      <a [routerLink]="['/login']" class="link-volver">← Volver al inicio</a>
+    </form>
+  </div>
+</div>
+
+  
