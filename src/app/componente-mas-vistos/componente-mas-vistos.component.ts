@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponenteMenuComponent } from "../componente-menu/componente-menu.component";
 import { DocumentosService } from '../services/documentos.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-componente-mas-vistos',
@@ -13,8 +14,9 @@ import { DocumentosService } from '../services/documentos.service';
 export class ComponenteMasVistosComponent implements OnInit {
 
   documentosMasVistos: any[] = [];
+  readonly environment = environment;
 
-  constructor(private documentosService: DocumentosService) {}
+  constructor(private documentosService: DocumentosService) { }
 
   ngOnInit() {
     this.documentosService.obtenerDocumentosMasVistos().subscribe({

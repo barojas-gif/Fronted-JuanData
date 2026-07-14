@@ -9,6 +9,7 @@ import { ComponenteMenuComponent } from "../componente-menu/componente-menu.comp
 import { ComponenteModalMensajeComponent } from '../componente-modal-mensaje/componente-modal-mensaje.component';
 import { DocumentosService } from '../services/documentos.service';
 import { VistaDocumentoService } from '../services/vista-documento.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-componente-archivos-pendientes',
@@ -215,7 +216,7 @@ export class ComponenteArchivosPendientesComponent implements OnInit {
   abrirDocumento(doc: any) {
     const nombre = doc.archivoDocumento;
     const ext = nombre.split('.').pop()?.toLowerCase();
-    const urlBackend = `http://localhost:8080/api/documentos/uploads/${encodeURIComponent(nombre)}`;
+    const urlBackend = `${environment.uploadsBaseUrl}${encodeURIComponent(nombre)}`;
 
     if (ext === 'pdf') {
       window.open(`/assets/pdfjs/web/viewer.html?file=${urlBackend}`, '_blank');

@@ -25,8 +25,7 @@
       <td>{{ doc.fechaUltimaVista | date:'short' }}</td>
       <td>{{ doc.semestre }}</td>
       <td>
-        <a [href]="'http://localhost:8080/api/documentos/uploads/' + encodeUrl(doc.archivoDocumento)
-" target="_blank">
+        <a [href]="environment.uploadsBaseUrl + encodeUrl(doc.archivoDocumento)" target="_blank">
           {{ doc.archivoDocumento }}
         </a>
       </td>

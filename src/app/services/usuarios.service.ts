@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UsuarioDTO } from '../DTO/usuario.dto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8080/api/usuarios';
+  private apiUrl = `${environment.apiBaseUrl}/usuarios`;
 
   constructor(
     private http: HttpClient,
@@ -41,7 +42,7 @@ export class UsuarioService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.get<any[]>('http://localhost:8080/api/roles/listar', { headers });
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/roles/listar`, { headers });
   }
 
 
@@ -51,7 +52,7 @@ export class UsuarioService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.get<any[]>('http://localhost:8080/api/carreras/listar', { headers });
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/carreras/listar`, { headers });
   }
 
 
@@ -75,7 +76,7 @@ export class UsuarioService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.put(`http://localhost:8080/api/usuarios/desactivar/${id}`, null, { headers });
+    return this.http.put(`${this.apiUrl}/desactivar/${id}`, null, { headers });
   }
 
   obtenerUsuarioPorId(id: number): Observable<UsuarioDTO> {
@@ -84,7 +85,7 @@ export class UsuarioService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.get<UsuarioDTO>(`http://localhost:8080/api/usuarios/buscar/${id}`, { headers });
+    return this.http.get<UsuarioDTO>(`${this.apiUrl}/buscar/${id}`, { headers });
   }
 
   listarUsuariosPorCarreraDelAdmin(): Observable<UsuarioDTO[]> {
@@ -101,7 +102,7 @@ export class UsuarioService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.get<boolean>(`http://localhost:8080/api/usuarios/existe-correo?correo=${correo}`, { headers });
+    return this.http.get<boolean>(`${this.apiUrl}/existe-correo?correo=${correo}`, { headers });
   }
 
   // En usuarios.service.ts

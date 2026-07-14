@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = `${environment.apiBaseUrl}/auth`;
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +38,7 @@ export class AuthService {
     return localStorage.getItem('nombreUsuario');
   }
 
-  obtenerDatosToken(): any {  
+  obtenerDatosToken(): any {
     const token = this.obtenerToken();
     if (!token) return null;
     try {
@@ -68,11 +69,11 @@ export class AuthService {
   guardarTemporal(temporal: boolean) {
     localStorage.setItem('temporal', temporal.toString());
   }
-  
+
   esTemporal(): boolean {
     return localStorage.getItem('temporal') === 'true';
   }
-  
+
   removerTemporal() {
     localStorage.removeItem('temporal');
   }
@@ -82,8 +83,8 @@ export class AuthService {
       nuevaContrasena
     });
   }
-  
+
   getCarreras(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8080/api/carreras/listar');
-  }   
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/carreras/listar`);
+  }
 }

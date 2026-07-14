@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SemilleroService {
 
-  private baseUrl = 'http://localhost:8080/api/semilleros';
+  private baseUrl = `${environment.apiBaseUrl}/semilleros`;
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +22,7 @@ export class SemilleroService {
   }
 
   obtenerSemilleroUsuario(): Observable<any | null> {
-    return this.http.get<any>('http://localhost:8080/api/documentos/usuario/mi-semillero', {
+    return this.http.get<any>(`${environment.apiBaseUrl}/documentos/usuario/mi-semillero`, {
       headers: this.obtenerHeaders(),
       observe: 'response'
     }).pipe(
@@ -69,7 +70,7 @@ export class SemilleroService {
 
   // Obtener documentos por usuario
   getDocumentosPorUsuario(idUsuario: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/documentos/usuario/${idUsuario}/documentos`, {
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/documentos/usuario/${idUsuario}/documentos`, {
       headers: this.obtenerHeaders()
     });
   }

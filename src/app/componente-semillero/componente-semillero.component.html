@@ -59,7 +59,7 @@
                                                 <div class="btn-group shadow-sm border rounded-pill overflow-hidden">
                                                     <a class="btn btn-white btn-sm px-3 border-end"
                                                         title="Ver Documento"
-                                                        [href]="'http://localhost:8080/api/documentos/uploads/' + doc.archivoDocumento"
+                                                        [href]="environment.uploadsBaseUrl + doc.archivoDocumento"
                                                         target="_blank">
                                                         <ng-container
                                                             [ngSwitch]="doc.archivoDocumento.split('.').pop().toLowerCase()">

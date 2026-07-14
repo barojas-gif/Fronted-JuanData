@@ -5,6 +5,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { ComponenteMenuComponent } from '../componente-menu/componente-menu.component';
 import * as mammoth from 'mammoth';
 import * as XLSX from 'xlsx';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-componente-ver-documento',
@@ -27,22 +28,22 @@ export class ComponenteVerDocumentoComponent implements AfterViewInit {
     link.target = '_blank';
     link.click();
   }
-  
+
 
   @ViewChild('contenedor', { static: true }) contenedor!: ElementRef<HTMLDivElement>;
 
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   async ngAfterViewInit() {
-      document.addEventListener('contextmenu', e => e.preventDefault()); //Inabilita el clic derecho en todo el documento
+    document.addEventListener('contextmenu', e => e.preventDefault()); //Inabilita el clic derecho en todo el documento
     const nombre = this.route.snapshot.paramMap.get('nombreArchivo')!;
     if (!nombre) return;
 
     this.nombreArchivo = decodeURIComponent(nombre);
-    this.fileUrl = `http://localhost:8080/api/documentos/uploads/${encodeURIComponent(nombre)}`;
+    this.fileUrl = `${environment.uploadsBaseUrl}${encodeURIComponent(nombre)}`;
     this.ext = nombre.split('.').pop()?.toLowerCase() ?? '';
 
     if (this.ext === 'pdf') {

@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriaService {
 
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   obtenerMateriasPorSemestre(semestre: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/materias/porSemestre/${semestre}`);
@@ -29,7 +30,7 @@ export class MateriaService {
       })
     );
   }
-  
+
 
   obtenerMateriasPorCarreraYSemestre(idCarrera: number, idSemestre: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/materias/porCarreraYSemestre?idCarrera=${idCarrera}&idSemestre=${idSemestre}`);

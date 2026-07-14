@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ComponenteMenuComponent } from "../componente-menu/componente-menu.component";
 import { DocumentosService } from '../services/documentos.service';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-componente-archivos-aceptados',
@@ -133,8 +134,7 @@ export class ComponenteArchivosAceptadosComponent {
     const ext = nombre.split('.').pop()?.toLowerCase() ?? '';
 
     // URL cruda del backend (se codifica una vez aquí)
-    const urlBackend = 'http://localhost:8080/api/documentos/uploads/'
-      + encodeURIComponent(nombre);
+    const urlBackend = environment.uploadsBaseUrl + encodeURIComponent(nombre);
 
     /* PDFs → PDF.js */
     if (ext === 'pdf') {

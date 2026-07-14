@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentosService {
 
-  private baseUrl = 'http://localhost:8080/api/documentos';
+  private baseUrl = `${environment.apiBaseUrl}/documentos`;
 
   constructor(private http: HttpClient) { }
 
@@ -55,7 +56,7 @@ export class DocumentosService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.get<any[]>('http://localhost:8080/api/documentos/pendientes', { headers });
+    return this.http.get<any[]>(`${this.baseUrl}/pendientes`, { headers });
   }
 
   // Obtener documentos por estado (reutilizable)
@@ -65,7 +66,7 @@ export class DocumentosService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.get<any[]>('http://localhost:8080/api/documentos/aceptados', { headers });
+    return this.http.get<any[]>(`${this.baseUrl}/aceptados`, { headers });
   }
 
 
@@ -102,7 +103,7 @@ export class DocumentosService {
   }
 
   obtenerCantidadDocumentosPendientes(): Observable<number> {
-    return this.http.get<number>('http://localhost:8080/api/documentos/pendientes/count');
+    return this.http.get<number>(`${this.baseUrl}/pendientes/count`);
   }
 
   obtenerDocumentosPorSemillero(idSemillero: number): Observable<any[]> {
