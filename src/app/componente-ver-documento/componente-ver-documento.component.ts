@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule, NgIf } from '@angular/common';
 import { ComponenteMenuComponent } from '../componente-menu/componente-menu.component';
-import * as mammoth from 'mammoth';
-import * as XLSX from 'xlsx';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -21,6 +19,13 @@ export class ComponenteVerDocumentoComponent implements AfterViewInit {
   iframeUrl: SafeResourceUrl | null = null;
   esImg = false;
 
+  @ViewChild('contenedor', { static: true }) contenedor!: ElementRef<HTMLDivElement>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
+  ) { }
+
   descargarArchivo() {
     const link = document.createElement('a');
     link.href = this.fileUrl;
@@ -29,16 +34,9 @@ export class ComponenteVerDocumentoComponent implements AfterViewInit {
     link.click();
   }
 
-
-  @ViewChild('contenedor', { static: true }) contenedor!: ElementRef<HTMLDivElement>;
-
-  constructor(
-    private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
-  ) { }
-
   async ngAfterViewInit() {
-    document.addEventListener('contextmenu', e => e.preventDefault()); //Inabilita el clic derecho en todo el documento
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
     const nombre = this.route.snapshot.paramMap.get('nombreArchivo')!;
     if (!nombre) return;
 
@@ -87,37 +85,39 @@ export class ComponenteVerDocumentoComponent implements AfterViewInit {
       }
     });
 
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown', (e) => {
       const forbiddenKeys = ['s', 'p', 'u', 'c', 'a'];
       if ((e.ctrlKey || e.metaKey) && forbiddenKeys.includes(e.key.toLowerCase())) {
         e.preventDefault();
-        console.log(`Bloqueado: Ctrl+${e.key.toUpperCase()}`);
       }
       if (e.key === 'F12') {
         e.preventDefault();
-        console.log('Bloqueado: F12');
       }
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'i') {
         e.preventDefault();
-        console.log('Bloqueado: DevTools');
       }
     });
   }
 
-  /* ======== DOCX: Convertir a HTML ========= */
+  /* ======== DOCX: Carga diferida de Mammoth ========= */
   private async renderDocx() {
-    const buf = await fetch(this.fileUrl).then(r => r.arrayBuffer());
+    const [buf, mammoth] = await Promise.all([
+      fetch(this.fileUrl).then(r => r.arrayBuffer()),
+      import('mammoth')
+    ]);
     const { value } = await mammoth.convertToHtml({ arrayBuffer: buf });
     this.contenedor.nativeElement.innerHTML = value;
   }
 
-  /* ======== XLSX: Primera hoja como HTML ========= */
+  /* ======== XLSX: Carga diferida de XLSX ========= */
   private async renderXlsx() {
-    const buf = await fetch(this.fileUrl).then(r => r.arrayBuffer());
+    const [buf, XLSX] = await Promise.all([
+      fetch(this.fileUrl).then(r => r.arrayBuffer()),
+      import('xlsx')
+    ]);
     const wb = XLSX.read(buf, { type: 'array' });
     const sheet = wb.Sheets[wb.SheetNames[0]];
     const html = XLSX.utils.sheet_to_html(sheet, { id: 'tbl' });
     this.contenedor.nativeElement.innerHTML = html;
   }
 }
-
