@@ -1,0 +1,94 @@
+<app-menu></app-menu>
+
+<div class="container-fluid mt-4 px-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+
+      <div class="row g-3 mb-4 align-items-center">
+        <div class="col-auto d-flex align-items-center">
+          <label class="me-2 fw-bold text-secondary">Mostrar:</label>
+          <select class="form-select form-select-sm w-auto" [(ngModel)]="elementosPorPagina"
+            (change)="paginaActual = 1">
+            <option [value]="5">5</option>
+            <option [value]="10">10</option>
+            <option [value]="25">25</option>
+            <option [value]="documentosFiltrados.length">Todos</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0 text-muted">
+              <i class="bi bi-search"></i>
+            </span>
+            <input type="text" class="form-control border-start-0 ps-0"
+              placeholder="Buscar por estudiante, tema o título..." [(ngModel)]="terminoBusqueda"
+              (ngModelChange)="reiniciarPagina()">
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle border-top">
+          <thead class="table-primary">
+            <tr> 
+              <th class="text-secondary py-3 text-center">#</th>
+              <th (click)="ordenarPor('nombreEstudiante')" class="cursor-pointer text-primary py-3">
+                Nombre <i class="bi" [ngClass]="getSortIcon('nombreEstudiante')"></i>
+              </th>
+              <th (click)="ordenarPor('apellidoEstudiante')" class="cursor-pointer text-primary py-3">
+                Apellido <i class="bi" [ngClass]="getSortIcon('apellidoEstudiante')"></i>
+              </th>
+              <th (click)="ordenarPor('fechaDocumento')" class="cursor-pointer text-primary py-3">
+                Fecha <i class="bi" [ngClass]="getSortIcon('fechaDocumento')"></i>
+              </th>
+              <th class="text-secondary py-3">Tema</th>
+              <th class="text-secondary py-3">Título</th>
+              <th class="text-secondary py-3 text-center">Archivo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let documento of documentosPaginados(); index as i">
+              <td class="text-center fw-bold text-muted">{{ ((paginaActual - 1) * elementosPorPagina) + i + 1 }}</td>
+              <td>{{ documento.nombreEstudiante }}</td>
+              <td>{{ documento.apellidoEstudiante }}</td>
+              <td class="text-muted small">{{ documento.fechaDocumento | date: 'dd/MM/yyyy' }}</td>
+              <td>
+                <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle">
+                  {{ documento.temaDocumento }}
+                </span>
+              </td>
+              <td class="small">{{ documento.tituloDocumento }}</td>
+              <td class="text-center">
+                <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" (click)="abrirDocumento(documento)">
+                  <img [src]="obtenerIconoArchivo(documento.archivoDocumento)" width="18" class="me-1"> Ver
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="documentosFiltrados.length === 0">
+              <td colspan="7" class="text-center py-5 text-muted">
+                <i class="bi bi-folder-x fs-1"></i>
+                <p class="mt-2">No hay documentos aceptados que coincidan.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <span class="text-muted small">Página <strong>{{ paginaActual }}</strong> de {{ totalPaginas }}</span>
+        <nav>
+          <ul class="pagination pagination-sm mb-0">
+            <li class="page-item" [class.disabled]="paginaActual === 1">
+              <button class="page-link" (click)="paginaActual = paginaActual - 1">Anterior</button>
+            </li>
+            <li class="page-item" [class.disabled]="paginaActual === totalPaginas || totalPaginas === 0">
+              <button class="page-link" (click)="paginaActual = paginaActual + 1">Siguiente</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+
+<header class="header">
+  <h1>{{ nombreArchivo }}</h1>
+
+ 
+  </header>
+
+  <!-- Botón para descargar Excel -->
+  <button *ngIf="ext === 'xlsx'" (click)="descargarArchivo()" class="download-button">Descargar Excel</button>
+
+<div class="document-container">
+
+  <!-- PDF con overlay -->
+  <div class="doc-wrapper" *ngIf="iframeUrl">
+    <iframe #pdfFrame
+            class="doc-frame"
+            [src]="iframeUrl"
+            frameborder="0"></iframe>
+    <div class="overlay no-copy"></div>
+  </div>
+
+  <!-- Imagen -->
+  <div class="img-wrapper" *ngIf="esImg">
+    <img [src]="fileUrl" alt="Documento" />
+  </div>
+
+  <!-- DOCX / XLSX / Otros -->
+  <div class="doc-html no-copy" #contenedor></div>
+  
+
+</div>
