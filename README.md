@@ -1,24 +1,22 @@
-# JuanData — Frontend
+# JuanData - Frontend
 
-Aplicación web frontend del proyecto **JuanData**, desarrollada con **Angular 19.2.0**.
+Frontend de JuanData desarrollado con Angular.
 
-El sistema está orientado a la gestión y consulta de información académica de la **Fundación Universitaria Juan de Castellanos**.
+## Como clonar el proyecto
 
----
-
-## 🚀 Instalación
-
-Para obtener el proyecto, abre una terminal y ejecuta:
+Abre una terminal y ejecuta:
 
 ```bash
 git clone https://github.com/barojas-gif/Fronted-JuanData.git
 ```
 
-Luego entra a la carpeta del proyecto:
+Entra a la carpeta del proyecto:
 
 ```bash
 cd Fronted-JuanData
 ```
+
+## Que hacer despues de clonar
 
 Instala las dependencias:
 
@@ -26,14 +24,46 @@ Instala las dependencias:
 npm install
 ```
 
-Finalmente, ejecuta el proyecto:
+Crea los archivos de entorno a partir de los ejemplos:
 
 ```bash
-ng serve
+copy src\environments\environment.example.ts src\environments\environment.ts
+copy src\environments\environment.prod.example.ts src\environments\environment.prod.ts
 ```
 
-El proyecto estará disponible en:
+Si usas macOS o Linux:
+
+```bash
+cp src/environments/environment.example.ts src/environments/environment.ts
+cp src/environments/environment.prod.example.ts src/environments/environment.prod.ts
+```
+
+Si el backend no esta en `http://localhost:8080`, cambia la URL en:
 
 ```text
-http://localhost:4200
+src/environments/environment.ts
 ```
+
+## Ejecutar el proyecto
+
+Inicia el servidor local:
+
+```bash
+npm start
+```
+
+Abre el navegador en:
+
+```text
+http://localhost:4200/
+```
+
+## Compilar el proyecto
+
+Para generar la version de produccion:
+
+```bash
+npm run build
+```
+
+El frontend necesita que el backend este ejecutandose para iniciar sesion y cargar datos.
