@@ -6,47 +6,34 @@ El sistema está orientado a la gestión y consulta de información académica d
 
 ---
 
-## 📌 Información del proyecto
+## 🚀 Instalación
 
-| Información | Detalle |
-|---|---|
-| Proyecto | JuanData |
-| Tipo | Frontend Web |
-| Framework | Angular 19.2.0 |
-| Lenguaje | TypeScript |
-| Gestor de paquetes | npm |
-| Control de versiones | Git |
-| Repositorio | GitHub |
+Para obtener el proyecto, abre una terminal y ejecuta:
 
-**Repositorio:**  
-https://github.com/barojas-gif/Fronted-JuanData.git
+```bash
+git clone https://github.com/barojas-gif/Fronted-JuanData.git
+```
 
----
+Luego entra a la carpeta del proyecto:
 
-## 🛠️ Tecnologías
+```bash
+cd Fronted-JuanData
+```
 
-- Angular 19.2.0
-- TypeScript
-- HTML5
-- CSS3
-- Angular CLI
-- Node.js
-- npm
-- Git
-- GitHub
+Instala las dependencias:
 
----
+```bash
+npm install
+```
 
-# 🚀 Instalación
+Finalmente, ejecuta el proyecto:
 
-Esta sección explica cómo descargar y ejecutar el proyecto por primera vez.
+```bash
+ng serve
+```
 
-## 1. Crear una carpeta para el proyecto
-
-Primero, crea una carpeta donde quieras almacenar el proyecto.
-
-Por ejemplo:
+El proyecto estará disponible en:
 
 ```text
-Documentos/
-└── Proyectos-JDC/
+http://localhost:4200
+```
